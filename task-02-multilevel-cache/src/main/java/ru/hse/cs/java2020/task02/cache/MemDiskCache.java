@@ -36,8 +36,8 @@ public class MemDiskCache implements Cache {
 
     @Override
     public String put(long key, String value) throws IOException, LimitExceededException {
-        String oldValue = memCache.put(key, value);
-        diskCache.put(key, value);
+        String oldValue = diskCache.put(key, value);
+        memCache.put(key, value);
         return oldValue;
     }
 

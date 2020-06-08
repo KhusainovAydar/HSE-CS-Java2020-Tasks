@@ -3,4 +3,16 @@ version '1.0'
 mainClassName = 'ru.hse.cs.java2020.task03.Main'
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.telegram/telegrambots
+    compile group: 'org.telegram', name: 'telegrambots', version: '4.8.1'
+    // https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
+    compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.0'
+    compile group: 'org.json', name: 'json', version: '20180813'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.17.Final'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
 }

@@ -5,6 +5,9 @@ public enum WatchState implements UserState {
     GET_KEY("get_key"),
     WAIT_BACK("wait_back"),
     SHOW_FROM_CB("show_from_cb"),
+    SHOW_COMMENTS("show_comments"),
+    INTRO_COMMENT("intro_comment"),
+    GET_COMMENT("get_comment"),
     ;
 
     private final String description;

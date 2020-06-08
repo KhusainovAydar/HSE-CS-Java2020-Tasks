@@ -33,10 +33,31 @@ public class CallbackQueryHandler {
         User user = userService.findUserByChatId(chatId.toString());
         String[] command = callData.split("\\s+");
         FullState newState;
+        JSONObject meta;
         switch (command[0]) {
             case "/watch":
                 newState = new FullState(WatchState.class.getSimpleName(), WatchState.BEGIN.getStateValue());
                 FullState.fillUserState(user, newState);
+                userService.updateUser(user);
+                new WatchMessageHandler(chatId, user, userService, null, replyGenerator, new StartrekClient())
+                        .actionHandler();
+                break;
+            case "/watch_get_comments":
+                newState = new FullState(WatchState.class.getSimpleName(), WatchState.SHOW_COMMENTS.getStateValue());
+                FullState.fillUserState(user, newState);
+                meta = new JSONObject(user.getMeta());
+                meta.put("issue_key", command[1]);
+                user.setMeta(meta.toString());
+                userService.updateUser(user);
+                new WatchMessageHandler(chatId, user, userService, null, replyGenerator, new StartrekClient())
+                        .actionHandler();
+                break;
+            case "/watch_add_comment":
+                newState = new FullState(WatchState.class.getSimpleName(), WatchState.INTRO_COMMENT.getStateValue());
+                FullState.fillUserState(user, newState);
+                meta = new JSONObject(user.getMeta());
+                meta.put("issue_key", command[1]);
+                user.setMeta(meta.toString());
                 userService.updateUser(user);
                 new WatchMessageHandler(chatId, user, userService, null, replyGenerator, new StartrekClient())
                         .actionHandler();
@@ -68,7 +89,7 @@ public class CallbackQueryHandler {
             case "/search_issue":
                 newState = new FullState(WatchState.class.getSimpleName(), WatchState.SHOW_FROM_CB.getStateValue());
                 FullState.fillUserState(user, newState);
-                JSONObject meta = new JSONObject(user.getMeta());
+                meta = new JSONObject(user.getMeta());
                 meta.put("issue_key", command[1]);
                 user.setMeta(meta.toString());
                 userService.updateUser(user);

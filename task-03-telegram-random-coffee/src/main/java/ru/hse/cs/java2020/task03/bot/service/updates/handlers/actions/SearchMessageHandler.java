@@ -62,6 +62,7 @@ public class SearchMessageHandler implements MessageHandler {
                 throw new Exception("");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             replyMessageGenerator.sendTextMessage(chatId, "Что-то пошло не так");
             newState = new FullState(SearchState.class.getSimpleName(), SearchState.BEGIN.getStateValue());
         }

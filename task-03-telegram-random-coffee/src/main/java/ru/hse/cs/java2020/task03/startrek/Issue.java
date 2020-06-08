@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
         "commentWithoutExternalMessageCount",
         "createdAt",
         "deadline",
+        "lastCommentUpdatedAt",
         "priority",
         "parent",
         "storyPoints",

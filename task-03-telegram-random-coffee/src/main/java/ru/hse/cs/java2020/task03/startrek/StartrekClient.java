@@ -201,4 +201,26 @@ public class StartrekClient implements Startrek {
         return new ObjectMapper().readValue(response, Person.class);
     }
 
+    @Override
+    public List<Comment> getComments(String oauthToken, String orgId, String issueKey) throws UnexpectedException, ProtocolException, JsonProcessingException {
+        List<Header> headers = getListOfHeaders(oauthToken, orgId);
+        String apiUrl = getApiUrl("issues/" + issueKey + "/comments");
+
+        String response = getMethod(apiUrl, headers);
+        return new ObjectMapper().readValue(response, new TypeReference<List<Comment>>() {
+        });
+    }
+
+    @Override
+    public Comment postComment(String oauthToken, String orgId, String issueKey, String text) throws UnexpectedException, ProtocolException, JsonProcessingException {
+        List<Header> headers = getListOfHeaders(oauthToken, orgId);
+        String apiUrl = getApiUrl("issues/" + issueKey + "/comments");
+
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("text", text);
+
+        String response = postMethod(apiUrl, headers, requestParams);
+        return new ObjectMapper().readValue(response, Comment.class);
+    }
+
 }

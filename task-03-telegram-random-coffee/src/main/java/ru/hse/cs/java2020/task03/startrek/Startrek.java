@@ -25,4 +25,10 @@ public interface Startrek {
 
     Person personInfo(String oauthToken, String orgId) throws
             UnexpectedException, ProtocolException, JsonProcessingException;
+
+    List<Comment> getComments(String oauthToken, String orgId, String issueKey)
+            throws UnexpectedException, ProtocolException, JsonProcessingException;
+
+    Comment postComment(String oauthToken, String orgId, String issueKey, String text)
+            throws UnexpectedException, ProtocolException, JsonProcessingException;
 }

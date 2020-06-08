@@ -66,7 +66,6 @@ public class CreateMessageHandler implements MessageHandler {
             } else if (user.getStateValue().equals(CreateState.UPDATE_CHANGES.getStateValue())) {
                 newState = updateChanges();
             } else if (user.getStateValue().equals(CreateState.INTRO_QUEUE.getStateValue())) {
-                System.out.println("KEK");
                 newState = introQueue();
             } else if (user.getStateValue().equals(CreateState.GET_QUEUE.getStateValue())) {
                 newState = getQueue();
@@ -139,7 +138,6 @@ public class CreateMessageHandler implements MessageHandler {
     }
 
     private FullState getSummary() {
-        System.out.println("getSummary");
         JSONObject meta = new JSONObject(user.getMeta());
         meta.put("summary", message);
         user.setMeta(meta.toString());
